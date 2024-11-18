@@ -4,7 +4,7 @@ const Employee = require('./employee');
 require('dotenv').config();
  
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/employeeDB?retryWrites=true&w=majority`;
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+const clientOptions = { dbName:'employeeDB', serverApi: { version: '1', strict: true, deprecationErrors: true } };
 console.log(uri)
 
 async function run() {
@@ -20,16 +20,23 @@ async function run() {
 }
 run().catch(console.dir);
 
-
-mongoose.connect(uri, clientOptions)
+mongoose.connect(uri,clientOptions)
     .then(() => {
         console.log("Connected to MongoDB");
-        // insertMany records into employee
-        return Employee.find();
-    }) 
-    .then((data) => {
-        console.log("\nDocuments in employees collection:");
-        console.log(data);
+        // Update one record in employee
+        return Employee.updateOne({ emp_name: "John Doe" },
+            { email: "jdoe@somewhere.com" });
+    })
+    .then((updateOneResult) => {
+        console.log("Updated Docs for updateOne:", updateOneResult);
+        console.log("One record updated");
+        // Update many records in employees
+        return Employee.updateMany({ age: { $gt: 30 } },
+            { location: "New York" });
+    })
+    .then((updateManyResult) => {
+        console.log("Updated Docs for updateMany:", updateManyResult);
+        console.log("Many records updated");
     })
     .catch((error) => {
         console.error("Error:", error);
