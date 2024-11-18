@@ -1,0 +1,23 @@
+{
+  "name": "coursera-ibm-nodejs-mongodb",
+  "version": "1.0.0",
+  "description": "https://www.coursera.org/specializations/javascript-programming-with-react-node-mongodb",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gloomy-penguin-kim/coursea-ibm-nodejs-mongodb.git"
+  },
+  "author": "kim jones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gloomy-penguin-kim/coursea-ibm-nodejs-mongodb/issues"
+  },
+  "homepage": "https://github.com/gloomy-penguin-kim/coursea-ibm-nodejs-mongodb#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.8.1"
+  }
+}
